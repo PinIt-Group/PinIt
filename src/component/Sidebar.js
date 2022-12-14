@@ -65,7 +65,7 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }, [assignChore]);
+  }, [trigger]);
 
   // submits the form and assigns chore based on selected name, room, and chore
   const assignChore = (e) => {

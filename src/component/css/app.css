@@ -1,6 +1,16 @@
-body {
-  font-family: Roboto, sans-serif;
+@font-face {
+  font-family: 'John';
+  src: url('../../../john.ttf') format('truetype');
 }
+
+body {
+  font-family: John, sans-serif;
+  font-size: 2rem;
+}
+
+/* body span:nth-child(10n + 1) {
+  color: #ef5350;
+} */
 
 .grid-container {
   display: grid;
