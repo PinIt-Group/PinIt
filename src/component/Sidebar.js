@@ -3,8 +3,10 @@ import ListName from './ListName';
 import ListRoom from './ListRoom';
 import ListChore from './ListChore';
 import style from './css/sidebar.css';
+// import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ users, chores, setUsers, setChores }) => {
+  // const history = useNavigate();
   // names
   //   const [names, setNames] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -48,6 +50,23 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
   //       });
   //   });
 
+  // adding useEffect to here and a new state
+  const [trigger, setTrigger] = useState(0);
+
+  useEffect(() => {
+    // console.log('Fetching chores');
+    fetch('/choresAndUsers')
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log('data', data);
+        setUsers(data.users);
+        setChores(data.chores);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, [assignChore]);
+
   // submits the form and assigns chore based on selected name, room, and chore
   const assignChore = (e) => {
     e.preventDefault();
@@ -68,6 +87,10 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        // window.location.href = 'http://localhost:8080';
+        // let navigate = useNavigate();
+        // navigate('/chore');
+        setTrigger(trigger + 1);
       })
       .catch((err) => {
         console.log(err);
@@ -175,7 +198,7 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
     e.preventDefault();
     setChoreShown((current) => !current);
   };
-
+  console.log('SELECTED USERID', selectedUserId);
   return (
     <div className="bg-base-300 sidebar">
       <form className="choreForm">

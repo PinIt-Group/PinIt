@@ -60,22 +60,31 @@ const Card = ({ userName, userID, chores, setUsers }) => {
   const roomObj = {};
 
   const rooms = chores.map((chore) => {
+    //set variable room to equal to room value of each chore object
     const room = chore.room;
+    //if roomObj at key room is undefined
     if (roomObj[room] === undefined) {
+      //set new key value pair in roomObj and set value equal to an empty array
       roomObj[room] = [];
     }
+    //push chore object into key value array
     roomObj[room].push(chore);
   });
 
-  //rendering rooms, filtering chores by room
-  const userRooms = chores.map((chore, index) => {
-    // console.log('chores', chores);
-    if (chore.assigned_user_id === userID) {
-      return <CardRoom key={index} chores={chore} />;
-    }
-  });
+  // console.log('ROOMOBJ:', roomObj);
+
+  // console.log('USER ROOMS:', userRooms);
   //rendering rooms and chores
   const onlyRooms = Object.keys(roomObj).map((room, index) => {
+    //rendering rooms, filtering chores by room
+    const userRooms = chores.map((chore, index) => {
+      // IF THE USER IS ASSIGNED TO THE ROOM && IF THE ROOM OF THE CHORE IS EQUAL TO THE ROOM THAT WE JUST MADE A DIV OF
+      console.log('chore!!!!!!!!!!!', chore);
+      if (chore.assigned_user_id === userID && chore.room === room) {
+        return <CardRoom key={index} chores={chore} />;
+      }
+    });
+
     return (
       <div className="card-component" key={index}>
         <div className="room-name">{room}</div>
@@ -84,6 +93,7 @@ const Card = ({ userName, userID, chores, setUsers }) => {
     );
   });
 
+  console.log('CHORES: ', chores);
   return (
     <div className="card bg-primary">
       <div className="card-name bg-secondary">
