@@ -8,6 +8,7 @@ import style from './css/app.css';
 export default function App() {
   const [users, setUsers] = useState([]);
   const [chores, setChores] = useState([]);
+  const [badWeather, setBadWeather] = useState(false);
 
   // const choresMem = useCallback( ()=> {
 
@@ -32,7 +33,7 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <Navbar />
+        <Navbar setBadWeather={setBadWeather}/>
       </header>
       <div className="grid-container">
         <Sidebar
@@ -40,6 +41,7 @@ export default function App() {
           chores={chores}
           setUsers={setUsers}
           setChores={setChores}
+          badWeather={badWeather}
         />
         <main className="main">
           <DisplayCard

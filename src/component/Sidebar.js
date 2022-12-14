@@ -2,54 +2,22 @@ import React, { useEffect, useState } from 'react';
 import ListName from './ListName';
 import ListRoom from './ListRoom';
 import ListChore from './ListChore';
-import style from './css/sidebar.css';
-// import { useNavigate } from 'react-router-dom';
+import WeatherIndicator from './WeatherIndicator';
+import AddName from './AddName.js';
+import AssignChore from './AssignChore';
+import DeleteName from './DeleteName';
+import AddChore from './AddChore';
+import DeleteChore from './DeleteChore';
 
-const Sidebar = ({ users, chores, setUsers, setChores }) => {
-  // const history = useNavigate();
-  // names
-  //   const [names, setNames] = useState([]);
+const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
+
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const [newName, setNewName] = useState(null);
-
-  // rooms
-  const [newRoom, setNewRoom] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState([]);
-
-  // chores
-  // const [chores, setChores] = useState([]);
   const [selectedChoreId, setSelectedChoreId] = useState([]);
-  const [newChore, setNewChore] = useState(null);
-
   // state to show and hide add name form
   const [nameShown, setNameShown] = useState(false);
-
   // state to show and hide add chore form
   const [choreShown, setChoreShown] = useState(false);
-
-  //   // constantly checking for updates to name, room, and chores state
-  //   useEffect(() => {
-  //     fetch('http://localhost:3000/choresAndUsers/')
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         const namesArr = [];
-  //         const roomsArr = [];
-  //         const choresArr = [];
-  //         data.users.map((el) => {
-  //           namesArr.push(el.name);
-  //         });
-  //         data.chores.map((el) => {
-  //           roomsArr.push(el.room);
-  //           if (selectedRoom === el.room) {
-  //             choresArr.push(el.chore);
-  //           }
-  //         });
-  //         setNames([...new Set(namesArr)]);
-  //         setRooms([...new Set(roomsArr)]);
-  //         setChores([...new Set(choresArr)]);
-  //       });
-  //   });
-
   // adding useEffect to here and a new state
   const [trigger, setTrigger] = useState(0);
 
@@ -65,105 +33,7 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }, [assignChore]);
-
-  // submits the form and assigns chore based on selected name, room, and chore
-  const assignChore = (e) => {
-    e.preventDefault();
-    // console.log('ASSIGN CHORE ID:', selectedChoreId);
-    console.log('ASSIGN USER ID:', selectedUserId);
-    fetch('http://localhost:3000/chore', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        choreID: selectedChoreId,
-        userID: selectedUserId,
-        assign: true,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // window.location.href = 'http://localhost:8080';
-        // let navigate = useNavigate();
-        // navigate('/chore');
-        setTrigger(trigger + 1);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // deletes selected name from dropdown menu
-  const deleteName = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:3000/user', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        id: selectedUserId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // adds new name to the dropdown menu
-  const addName = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:3000/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        name: newName,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log('something happened here');
-        console.log(err);
-      });
-  };
-
-  // adds new chore to the dropdown menu
-  const addChore = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:3000/chore', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        chore: newChore,
-        room: newRoom,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  }, [trigger]);
 
   // deletes selected chore from dropdown menu
   const deleteChore = (e) => {
@@ -198,7 +68,7 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
     e.preventDefault();
     setChoreShown((current) => !current);
   };
-  console.log('SELECTED USERID', selectedUserId);
+
   return (
     <div className="bg-base-300 sidebar">
       <form className="choreForm">
@@ -212,34 +82,18 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
           <button className="btn btn-sm" onClick={handleNameForm}>
             +
           </button>
-          <button className="btn btn-sm glass" onClick={deleteName}>
-            Delete current name
-          </button>
-
-          {nameShown && (
-            <form className="add-name">
-              <input
-                className="input input-bordered input-primary"
-                type="text"
-                name="newName"
-                placeholder="new name"
-                onChange={(e) => setNewName(e.target.value)}
-              />
-              <button
-                className="btn btn-sm btn-secondary"
-                type="submit"
-                onClick={addName}
-              >
-                Add Name
-              </button>
-            </form>
-          )}
+          <DeleteName selectedUserId={selectedUserId} />
+          <AddName nameShown={nameShown} />
         </div>
-        <div>
+        <div className="weatherIndicator">
           <ListRoom
             chores={chores}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
+          />
+          <WeatherIndicator
+            badWeather={badWeather}
+            selectedRoom={selectedRoom}
           />
         </div>
         <div>
@@ -255,38 +109,11 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
           <button className="btn btn-sm glass" onClick={deleteChore}>
             Delete current chore
           </button>
-
-          {choreShown && (
-            <form className="add-chore">
-              <input
-                className="input input-bordered input-primary"
-                type="text"
-                name="newChore"
-                placeholder="add new chore"
-                onChange={(e) => setNewChore(e.target.value)}
-              />
-              <input
-                className="input input-bordered input-primary"
-                type="text"
-                name="newRoom"
-                placeholder="add new room"
-                onChange={(e) => setNewRoom(e.target.value)}
-              />
-              <button
-                className="btn btn-secondary btn-sm"
-                type="submit"
-                onClick={addChore}
-              >
-                Add Chore
-              </button>
-            </form>
-          )}
+          <AddChore choreShown={choreShown} />
         </div>
-        <input
-          className="btn btn-primary"
-          type="submit"
-          value="Submit"
-          onClick={assignChore}
+        <AssignChore
+          selectedChoreId={selectedChoreId}
+          selectedUserId={selectedUserId}
         />
       </form>
     </div>
