@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ListRoom = ({ chores, selectedRoom, setSelectedRoom }) => {
-  console.log('CHORES', chores);
+  // console.log('CHORES', chores);
   const allRooms = [];
   if (chores.length !== 0) {
     for (const chore of chores) {

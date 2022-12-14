@@ -4,6 +4,7 @@ import style from './css/displayCard.css';
 
 const DisplayCard = ({ users, chores, setUsers, setChores }) => {
   //iterating over fetched data, passing it to Card component and rendering it to the page
+
   const userElems = users.map((user, index) => {
     return (
       <Card
@@ -17,7 +18,7 @@ const DisplayCard = ({ users, chores, setUsers, setChores }) => {
       />
     );
   });
-  console.log('userlemes', userElems);
+  // console.log('userlemes', userElems);
 
   return <div className="cards-container"> {userElems}</div>;
 };

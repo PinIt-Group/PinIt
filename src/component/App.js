@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import DisplayCard from './DisplayCard';
@@ -9,12 +9,18 @@ export default function App() {
   const [users, setUsers] = useState([]);
   const [chores, setChores] = useState([]);
 
+  // const choresMem = useCallback( ()=> {
+
+  // })
+
+  // const choresMemo = useMemo(() => chores, [chores]);
+
   useEffect(() => {
-    console.log('Fetching chores');
+    // console.log('Fetching chores');
     fetch('/choresAndUsers')
       .then((response) => response.json())
       .then((data) => {
-        console.log('data', data);
+        // console.log('data', data);
         setUsers(data.users);
         setChores(data.chores);
       })
