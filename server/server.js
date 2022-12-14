@@ -3,9 +3,10 @@ const express = require('express');
 // const { send } = require('process')
 const cors = require('cors');
 
-// import routers
+// import routers and controllers
 const choreRouter = require('./routers/choreRouter');
 const userRouter = require('./routers/userRouter');
+const weatherAPIRouter = require('./routers/weatherAPIRouter.js')
 const choreController = require('./controllers/choreController');
 const userController = require('./controllers/userController');
 const jointController = require('./controllers/jointController');
@@ -36,6 +37,7 @@ app.get(
 // send requests to specific routers
 app.use('/chore', choreRouter);
 app.use('/user', userRouter);
+app.use('/weather', weatherAPIRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));
