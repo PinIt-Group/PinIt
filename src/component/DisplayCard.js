@@ -19,7 +19,6 @@ const DisplayCard = ({ users, chores, setUsers, setChores }) => {
     );
   });
   // console.log('userlemes', userElems);
-
   return <div className="cards-container"> {userElems}</div>;
 };
 
