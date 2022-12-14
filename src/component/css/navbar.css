@@ -17,3 +17,8 @@ button {
   border-radius: 5px;
   padding: 2px;
 }
+
+.weatherBox {
+  background-color: lightblue;
+  border-radius: 5px;
+}
