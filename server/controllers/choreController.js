@@ -70,6 +70,26 @@ const choreController = {
         });
       });
   },
+  //delete a room and it's chores from the DB
+  deleteRoom: (req, res, next) => {
+    const { room } = req.params;
+    console.log('you made it!', room);
+    const values = [room];
+    console.log(room);
+    const text = 'DELETE FROM chores WHERE room=$1;';
+
+    db.query(text, values)
+      .then(() => {
+        res.locals.response = `deleted ${room} from the DB.`;
+        return next();
+      })
+      .catch((error) => {
+        return next({
+          log: 'error in deleteRoom method in choreController',
+          message: { error },
+        });
+      });
+  },
   // delete a chore row from the db
   deleteChore: (req, res, next) => {
     const { choreID } = req.body;
