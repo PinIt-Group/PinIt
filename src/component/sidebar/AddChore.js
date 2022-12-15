@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const AddChore = ({choreShown}) => {
-
+const AddChore = ({ setChoreShown, choreShown, setUsers, setChores }) => {
   const [newRoom, setNewRoom] = useState(null);
   const [newChore, setNewChore] = useState(null);
 
@@ -22,7 +21,18 @@ const AddChore = ({choreShown}) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location.pathname = '/';
+        // window.location.pathname = '/';
+        fetch('/choresAndUsers')
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log('data', data);
+            setUsers(data.users);
+            setChores(data.chores);
+            setChoreShown((choreShown) => !choreShown);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +65,7 @@ const AddChore = ({choreShown}) => {
           >
             Add Chore
           </button>
-        {/* </form> */}
+          {/* </form> */}
         </div>
       )}
     </div>

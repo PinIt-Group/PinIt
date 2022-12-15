@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteName = ({ selectedUserId }) => {
+const DeleteName = ({ selectedUserId, setUsers, setChores }) => {
   const deleteName = (e) => {
     console.log('USERID:', selectedUserId);
     e.preventDefault();
@@ -17,7 +17,17 @@ const DeleteName = ({ selectedUserId }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location.pathname = '/';
+        // window.location.pathname = '/';
+        fetch('/choresAndUsers')
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log('data', data);
+            setUsers(data.users);
+            setChores(data.chores);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       })
       .catch((err) => {
         console.log(err);

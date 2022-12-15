@@ -17,7 +17,6 @@ import DeleteRoom from './DeleteRoom';
  */
 
 const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
-
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState([]);
   const [selectedChoreId, setSelectedChoreId] = useState([]);
@@ -25,7 +24,7 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
   const [nameShown, setNameShown] = useState(false);
   // state to show and hide add chore form
   const [choreShown, setChoreShown] = useState(false);
-  
+
   // const [trigger, setTrigger] = useState(0);
 
   // useEffect(() => {
@@ -67,8 +66,17 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
           <button className="btn btn-sm" onClick={handleNameForm}>
             +
           </button>
-          <DeleteName selectedUserId={selectedUserId} />
-          <AddName nameShown={nameShown} />
+          <DeleteName
+            selectedUserId={selectedUserId}
+            setUsers={setUsers}
+            setChores={setChores}
+          />
+          <AddName
+            nameShown={nameShown}
+            setUsers={setUsers}
+            setChores={setChores}
+            setNameShown={setNameShown}
+          />
         </div>
         <div className="weatherIndicator">
           <ListRoom
@@ -80,7 +88,7 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
             badWeather={badWeather}
             selectedRoom={selectedRoom}
           />
-          <DeleteRoom />
+          <DeleteRoom setUsers={setUsers} setChores={setChores} />
         </div>
         <div>
           <ListChore
@@ -92,12 +100,24 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
           <button className="btn btn-sm" onClick={handleChoreForm}>
             +
           </button>
-          <DeleteChore selectedChoreId={selectedChoreId} />
-          <AddChore choreShown={choreShown} />
+          <DeleteChore
+            selectedChoreId={selectedChoreId}
+            setUsers={setUsers}
+            setChores={setChores}
+          />
+          <AddChore
+            setChoreShown={setChoreShown}
+            choreShown={choreShown}
+            setUsers={setUsers}
+            setChores={setChores}
+          />
         </div>
         <AssignChore
+          setChoreShown={setChoreShown}
           selectedChoreId={selectedChoreId}
           selectedUserId={selectedUserId}
+          setUsers={setUsers}
+          setChores={setChores}
         />
       </form>
     </div>
