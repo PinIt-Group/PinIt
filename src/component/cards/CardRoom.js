@@ -16,6 +16,7 @@ export default function CardRoom({ chores }) {
       }),
     });
     const data = await response.json();
+    window.location.pathname = '/';
     console.log('Patched Data: ', data);
   };
   // console.log('chores:', chores);

@@ -6,7 +6,7 @@ const cors = require('cors');
 // import routers and controllers
 const choreRouter = require('./routers/choreRouter');
 const userRouter = require('./routers/userRouter');
-const weatherAPIRouter = require('./routers/weatherAPIRouter.js')
+const weatherAPIRouter = require('./routers/weatherAPIRouter.js');
 const choreController = require('./controllers/choreController');
 const userController = require('./controllers/userController');
 const jointController = require('./controllers/jointController');

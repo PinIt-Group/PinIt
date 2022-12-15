@@ -8,6 +8,13 @@ import AssignChore from './AssignChore';
 import DeleteName from './DeleteName';
 import AddChore from './AddChore';
 import DeleteChore from './DeleteChore';
+import DeleteRoom from './DeleteRoom';
+
+/**
+ * [] Add button to delete room
+ * [] Add button to add room
+ * [] Make things work
+ */
 
 const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
 
@@ -18,44 +25,22 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
   const [nameShown, setNameShown] = useState(false);
   // state to show and hide add chore form
   const [choreShown, setChoreShown] = useState(false);
-  // adding useEffect to here and a new state
-  const [trigger, setTrigger] = useState(0);
+  
+  // const [trigger, setTrigger] = useState(0);
 
-  useEffect(() => {
-    // console.log('Fetching chores');
-    fetch('/choresAndUsers')
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log('data', data);
-        setUsers(data.users);
-        setChores(data.chores);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, [trigger]);
-
-  // deletes selected chore from dropdown menu
-  const deleteChore = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:3000/chore', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        choreID: selectedChoreId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // useEffect(() => {
+  //   // console.log('Fetching chores');
+  //   fetch('/choresAndUsers')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // console.log('data', data);
+  //       setUsers(data.users);
+  //       setChores(data.chores);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // }, []);
 
   // show the addname form
   const handleNameForm = (e) => {
@@ -95,6 +80,7 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
             badWeather={badWeather}
             selectedRoom={selectedRoom}
           />
+          <DeleteRoom />
         </div>
         <div>
           <ListChore
@@ -106,9 +92,7 @@ const Sidebar = ({ users, chores, setUsers, setChores, badWeather }) => {
           <button className="btn btn-sm" onClick={handleChoreForm}>
             +
           </button>
-          <button className="btn btn-sm glass" onClick={deleteChore}>
-            Delete current chore
-          </button>
+          <DeleteChore selectedChoreId={selectedChoreId} />
           <AddChore choreShown={choreShown} />
         </div>
         <AssignChore

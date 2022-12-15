@@ -1,6 +1,5 @@
 import React from 'react';
-import style from './css/navbar.css';
-import logoNoBackground from './logoNoBackground.png';
+import logoNoBackground from '../logoNoBackground.png';
 import Weather from './Weather.js';
 
 const NavBar = ({setBadWeather}) => {

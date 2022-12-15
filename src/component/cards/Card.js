@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import CardRoom from './CardRoom';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
-import style from './css/card.css';
 import classNames from 'classnames';
 
 const Card = ({ userName, userID, chores, setUsers }) => {

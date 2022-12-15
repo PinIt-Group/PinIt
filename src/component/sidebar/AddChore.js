@@ -22,6 +22,7 @@ const AddChore = ({choreShown}) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        window.location.pathname = '/';
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +32,8 @@ const AddChore = ({choreShown}) => {
   return (
     <div className="AddChore">
       {choreShown && (
-        <form className="add-chore">
+        // <form className="add-chore">
+        <div>
           <input
             className="input input-bordered input-primary"
             type="text"
@@ -53,7 +55,8 @@ const AddChore = ({choreShown}) => {
           >
             Add Chore
           </button>
-        </form>
+        {/* </form> */}
+        </div>
       )}
     </div>
   );

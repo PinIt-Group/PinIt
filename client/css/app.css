@@ -1,3 +1,8 @@
+@import 'card.css';
+@import 'displayCard.css';
+@import 'navbar.css';
+@import 'sidebar.css';
+
 body {
   font-family: Roboto, sans-serif;
 }

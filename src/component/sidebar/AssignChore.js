@@ -20,6 +20,7 @@ const AssignChore = ({selectedChoreId, selectedUserId}) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        window.location.pathname = '/';
         // window.location.href = 'http://localhost:8080';
         // let navigate = useNavigate();
         // navigate('/chore');

@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
-import Sidebar from './Sidebar';
-import Navbar from './Navbar';
-import DisplayCard from './DisplayCard';
-
-import style from './css/app.css';
+import Sidebar from './sidebar/Sidebar';
+import Navbar from './navbar/Navbar';
+import DisplayCard from './cards/DisplayCard';
+import style from '../../client/css/app.css';
 
 export default function App() {
   const [users, setUsers] = useState([]);

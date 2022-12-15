@@ -19,6 +19,7 @@ const AddName = ({ nameShown }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        window.location.pathname = '/';
       })
       .catch((err) => {
         console.log('something happened here');
@@ -29,7 +30,7 @@ const AddName = ({ nameShown }) => {
   return (
     <div className="">
       {nameShown && (
-        <form className="add-name">
+        <div className="add-name">
           <input
             className="input input-bordered input-primary"
             type="text"
@@ -44,7 +45,7 @@ const AddName = ({ nameShown }) => {
           >
             Add Name
           </button>
-        </form>
+        </div>
       )}
     </div>
   );
