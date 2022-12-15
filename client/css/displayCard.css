@@ -2,4 +2,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 10px;
+  /* background-image: url('https://media.istockphoto.com/id/827303250/photo/yellow-crayon-doodles-background-texture.jpg?s=612x612&w=0&k=20&c=7BBue-aeN9kG962xRh0r0R6sGYc2dmPY72lcjSZzQEM='); */
+  /* border: 1px solid red; */
 }

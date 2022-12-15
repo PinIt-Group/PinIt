@@ -44,17 +44,18 @@ const choreController = {
   // assign or unassign a chore to a user
   updateChore: (req, res, next) => {
     const { choreID, userID, assign } = req.body;
+    // console.log('UPDATE CHORE', choreID, userID, assign);
     // declare a null option ID for if we are unassigning and need to change the assigned value to null
     let userIDOption = null;
-    res.locals.response = `unassigned chore# ${choreID}`;
+    res.locals.response = `unassigned chore ${choreID}`;
     if (assign) {
       userIDOption = userID;
-      res.locals.response = `assigned chore# ${choreID} to user# ${userID}`;
+      res.locals.response = `assigned chore ${choreID} to user# ${userID}`;
     }
 
     const text = `UPDATE chores
     SET assigned_user_id=$1
-    WHERE ID=$2;`;
+    WHERE chore=$2;`; //ID
     const values = [userIDOption, choreID];
 
     // query the chore db and update the assigned user id
@@ -92,13 +93,14 @@ const choreController = {
   },
   // delete a chore row from the db
   deleteChore: (req, res, next) => {
-    const { choreID } = req.body;
+    const { chore } = req.params;
+    console.log('AM CHORE', chore);
     const text = `DELETE FROM chores
-    WHERE ID=$1`;
-    const values = [choreID];
+    WHERE chore=$1`;
+    const values = [chore];
     db.query(text, values)
       .then(() => {
-        res.locals.response = `deleted ${choreID} from the DB.`;
+        res.locals.response = `deleted ${chore} from the DB.`;
         return next();
       })
       .catch((error) => {

@@ -2,11 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  padding-top: 20px;
   width: 300px;
   height: 500px;
   margin: 10px;
   border-radius: 12px;
+  border: 1px solid red;
+  background-image: url('https://media.istockphoto.com/id/1072295604/photo/colored-pencil-background.jpg?s=612x612&w=0&k=20&c=sbOTVziY7IeEfsGLtbZCYMMwbBAohhfhon4uMpfS1yk=');
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+.card-component {
+  background-color: rgba(250, 250, 87, 0.651);
+  padding: 10px;
+  border-radius: 25px;
+  min-width: 250px;
 }
 
 .card-name {
@@ -14,10 +26,11 @@
   padding: 10px;
   border-radius: 10px;
   width: 60%;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bolder;
   margin-top: 10px;
   margin-bottom: 20px;
+  background-color: rgba(250, 250, 87, 0.651);
 }
 
 .card-room {
@@ -27,9 +40,9 @@
 .room-name {
   text-align: center;
   font-size: 20px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .checkbox {

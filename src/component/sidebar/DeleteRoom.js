@@ -5,7 +5,8 @@ const DeleteRoom = ({ setUsers, setChores }) => {
   const deleteRoom = (e) => {
     e.preventDefault();
     const value = e.target.parentNode.previousSibling.previousSibling.value;
-    fetch(`http://localhost:3000/chore/${value}`, {
+    console.log(value);
+    fetch(`http://localhost:3000/chore/room/${value}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

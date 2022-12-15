@@ -20,7 +20,7 @@ const Weather = ({ setBadWeather }) => {
     } else {
       setBadWeather(false);
     }
-  },[weatherRequested]);
+  }, [weatherData]);
 
   return (
     <div className="weather">

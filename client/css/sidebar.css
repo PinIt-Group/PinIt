@@ -1,6 +1,9 @@
 .sidebar {
   border-top-right-radius: 15px;
   height: 100vw;
+  background-color: rgba(154, 253, 154, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 
 .choreForm {
@@ -13,7 +16,7 @@
 }
 
 .assignChoreLabel {
-  font-size: 1.25rem;
+  font-size: 2.3rem;
 }
 
 button {
@@ -24,8 +27,9 @@ input[type='text'] {
   margin: 10px;
 }
 
-select {
+select option {
   width: 100%;
+  /* font-size: 10rem; */
 }
 
 .weatherIndicator {
@@ -37,4 +41,8 @@ select {
 .indicator span {
   color: red;
   margin-left: 2rem;
+}
+
+optgroup {
+  font-size: 300px;
 }
