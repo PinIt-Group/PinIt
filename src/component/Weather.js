@@ -1,46 +1,32 @@
 import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
+import ZipInput from './ZipInput.js';
+import WeatherInfo from './WeatherInfo.js';
 
-const Weather = () => {
+const Weather = ({ setBadWeather }) => {
   const [weatherRequested, setWeatherRequested] = useState(false);
   const [weatherData, setWeatherData] = useState({});
-
-  async function weatherFinder(e) {
-    try {
-      const input = e.target.previousSibling.value;
-      e.target.previousSibling.value = '';
-      const weatherData = await axios.get(
-        `http://localhost:3000/weather/${input}`
-      );
-      console.log('Weather Data received: ', weatherData.data);
-      setWeatherData(weatherData.data);
-      setWeatherRequested(true);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   //use state
+
+  const badWeatherFilter = /(rain)|(snow)|(sleet)|(hail)|(precipitation)|(mist)|(storm)/gi;
+
+  if (weatherRequested && (weatherData.conditions.match(badWeatherFilter) || weatherData.temp < 30)) {
+    setBadWeather(true);
+  } else {
+    setBadWeather(false);
+  }
 
   return (
     <div className="weather">
-      {weatherRequested && (
-        <div className="weatherBox">
-          <img src={weatherData.icon} />
-          <div>
-            {weatherData.conditions}
-            {weatherData.location}
-            {Math.round(weatherData.temp)}
-          </div>
-        </div>
-      )}
-      <div>
-        {/* {' '} */}
-        <label htmlFor="weather">Enter zip code: </label>
-        <input id="weather"></input>
-        <button onClick={(e) => weatherFinder(e)}>submit</button>
-      </div>
+      <WeatherInfo
+        weatherData={weatherData}
+        weatherRequested={weatherRequested}
+      />
+      <ZipInput
+        setWeatherData={setWeatherData}
+        setWeatherRequested={setWeatherRequested}
+      />
     </div>
   );
 };
