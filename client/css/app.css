@@ -1,0 +1,15 @@
+@import 'card.css';
+@import 'displayCard.css';
+@import 'navbar.css';
+@import 'sidebar.css';
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 350px;
+  grid-template-rows: auto;
+  grid-template-areas: 'sidebar feed';
+}

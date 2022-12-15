@@ -1,0 +1,49 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+label {
+  margin-right: 5px;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px;
+  background-color: lightskyblue;
+}
+
+.weatherBox {
+  background-color: lightskyblue;
+  border-radius: 5px;
+}
+
+.weather {
+  display: grid;
+  background-color: lightskyblue;
+  border-radius: 10px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.weatherInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+h4 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+input {
+  border-radius: 5px;
+}

@@ -1,0 +1,40 @@
+.sidebar {
+  border-top-right-radius: 15px;
+  height: 100vw;
+}
+
+.choreForm {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+
+.assignChoreLabel {
+  font-size: 1.25rem;
+}
+
+button {
+  margin: 8px;
+}
+
+input[type='text'] {
+  margin: 10px;
+}
+
+select {
+  width: 100%;
+}
+
+.weatherIndicator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.indicator span {
+  color: red;
+  margin-left: 2rem;
+}
