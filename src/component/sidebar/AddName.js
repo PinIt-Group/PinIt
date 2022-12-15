@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const AddName = ({ nameShown }) => {
+const AddName = ({ setNameShown, nameShown, setUsers, setChores }) => {
   const [newName, setNewName] = useState(null);
 
   const addName = (e) => {
@@ -19,7 +19,18 @@ const AddName = ({ nameShown }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location.pathname = '/';
+        // window.location.pathname = '/';
+        fetch('/choresAndUsers')
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log('data', data);
+            setUsers(data.users);
+            setChores(data.chores);
+            setNameShown((nameShown) => !nameShown);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       })
       .catch((err) => {
         console.log('something happened here');

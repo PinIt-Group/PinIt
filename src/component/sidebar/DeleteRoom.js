@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const DeleteRoom = () => {
-
+const DeleteRoom = ({ setUsers, setChores }) => {
   const deleteRoom = (e) => {
     e.preventDefault();
     const value = e.target.parentNode.previousSibling.previousSibling.value;
@@ -16,7 +15,17 @@ const DeleteRoom = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location.pathname = '/';
+        // window.location.pathname = '/';
+        fetch('/choresAndUsers')
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log('data', data);
+            setUsers(data.users);
+            setChores(data.chores);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       })
       .catch((err) => {
         console.log(err);
