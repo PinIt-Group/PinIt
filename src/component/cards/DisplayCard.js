@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import style from './css/displayCard.css';
 
 const DisplayCard = ({ users, chores, setUsers, setChores }) => {
   //iterating over fetched data, passing it to Card component and rendering it to the page

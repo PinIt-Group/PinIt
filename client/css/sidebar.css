@@ -9,7 +9,7 @@
   border-radius: 10px;
   display: grid;
   gap: 10px;
-  grid-template-columns: 200px;
+  grid-template-columns: 1fr;
 }
 
 .assignChoreLabel {
@@ -25,5 +25,16 @@ input[type='text'] {
 }
 
 select {
-  width: 70%;
+  width: 100%;
+}
+
+.weatherIndicator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.indicator span {
+  color: red;
+  margin-left: 2rem;
 }

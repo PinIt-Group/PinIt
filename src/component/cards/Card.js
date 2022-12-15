@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import CardRoom from './CardRoom';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
-import style from './css/card.css';
 import classNames from 'classnames';
 
-const Card = ({ userName, userID, chores, setUsers }) => {
+const Card = ({ userName, userID, chores, setUsers, setChores }) => {
   //delete user from database
   const deleteUser = async () => {
     const response = await fetch('/user', {
@@ -79,9 +78,16 @@ const Card = ({ userName, userID, chores, setUsers }) => {
     //rendering rooms, filtering chores by room
     const userRooms = chores.map((chore, index) => {
       // IF THE USER IS ASSIGNED TO THE ROOM && IF THE ROOM OF THE CHORE IS EQUAL TO THE ROOM THAT WE JUST MADE A DIV OF
-      console.log('chore!!!!!!!!!!!', chore);
+      // console.log('chore!!!!!!!!!!!', chore);
       if (chore.assigned_user_id === userID && chore.room === room) {
-        return <CardRoom key={index} chores={chore} />;
+        return (
+          <CardRoom
+            key={index}
+            chores={chore}
+            setUsers={setUsers}
+            setChores={setChores}
+          />
+        );
       }
     });
 

@@ -23,4 +23,8 @@ router.delete('/', choreController.deleteChore, (req, res) => {
   return res.status(200).json(res.locals.response);
 });
 
+router.delete('/:room', choreController.deleteRoom, (req, res) => {
+  return res.status(200).json(res.locals.response);
+});
+
 module.exports = router;

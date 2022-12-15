@@ -1,14 +1,16 @@
 import React from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const ListName = ({ users, selectedUserId, setSelectedUserId }) => {
   return (
     <select
       className="select"
-      value={selectedUserId}
+      defaultValue={selectedUserId}
       onChange={(e) => setSelectedUserId(e.target.value)}
       selected
     >
-      <option defaultValue="Name" disabled selected>
+      <option disabled selected>
         Name
       </option>
       {users.map((value) => (
