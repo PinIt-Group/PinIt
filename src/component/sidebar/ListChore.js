@@ -11,18 +11,26 @@ const ListChore = ({
   chores.map((value) => {
     if (value.room === selectedRoom) {
       choresArr.push(
-        <option value={value.id} key={value.chore}>
+        <option
+          value={selected} //value.id
+          id={selected}
+          key={value.chore}
+          name={selected}
+        >
           {value.chore}
         </option>
       );
     }
   });
-
+  let selected;
   return (
     <select
       className="select"
       value={selectedChoreId}
-      onChange={(e) => setSelectedChoreId(e.target.value)}
+      onChange={(e) => {
+        selected = e.target.value;
+        setSelectedChoreId(e.target.value);
+      }}
       selected
     >
       <option value="" disabled selected>

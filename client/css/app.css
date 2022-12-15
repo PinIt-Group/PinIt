@@ -2,9 +2,15 @@
 @import 'displayCard.css';
 @import 'navbar.css';
 @import 'sidebar.css';
+@font-face {
+  font-family: John;
+  src: url('../../john.ttf');
+}
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: John;
+  /* background-color: rgb(254, 254, 254); */
+  background-image: url('https://t3.ftcdn.net/jpg/01/03/23/32/360_F_103233218_bTXI2to1AdzgS3xxPwnNvVMSr3XBbVH3.jpg');
 }
 
 .grid-container {

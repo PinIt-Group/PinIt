@@ -119,7 +119,7 @@ const Card = ({ userName, userID, chores, setUsers, setChores }) => {
               horizontal
               vertical
               rotate={180}
-              color="white"
+              color="black"
             />
           </button>
           <button className="editBtn" type="submit" onClick={(e) => onEdit(e)}>
@@ -129,7 +129,7 @@ const Card = ({ userName, userID, chores, setUsers, setChores }) => {
               horizontal
               vertical
               rotate={180}
-              color="white"
+              color="black"
             />
           </button>
         </div>

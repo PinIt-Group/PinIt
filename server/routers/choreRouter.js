@@ -18,12 +18,12 @@ router.patch('/', choreController.updateChore, (req, res) => {
   return res.status(200).json(res.locals.response);
 });
 
-// delete requests to chore should remove the row from the database
-router.delete('/', choreController.deleteChore, (req, res) => {
+router.delete('/room/:room', choreController.deleteRoom, (req, res) => {
   return res.status(200).json(res.locals.response);
 });
 
-router.delete('/:room', choreController.deleteRoom, (req, res) => {
+// delete requests to chore should remove the row from the database
+router.delete('/:chore', choreController.deleteChore, (req, res) => {
   return res.status(200).json(res.locals.response);
 });
 

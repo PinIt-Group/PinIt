@@ -10,14 +10,16 @@ const ListName = ({ users, selectedUserId, setSelectedUserId }) => {
       onChange={(e) => setSelectedUserId(e.target.value)}
       selected
     >
-      <option disabled selected>
-        Name
-      </option>
-      {users.map((value) => (
-        <option value={value.id} key={value.name}>
-          {value.name}
+      <optgroup>
+        <option disabled selected className="optgroup">
+          Name
         </option>
-      ))}
+        {users.map((value) => (
+          <option value={value.id} key={value.name} className="optgroup">
+            {value.name}
+          </option>
+        ))}
+      </optgroup>
     </select>
   );
 };

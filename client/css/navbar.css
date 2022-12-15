@@ -13,23 +13,32 @@ label {
 }
 
 button {
-  border: 1px solid black;
+  border: 0.5px solid black;
   border-radius: 5px;
-  padding: 2px;
-  background-color: lightskyblue;
+  padding: 5px;
+  background-color: rgba(21, 176, 248, 0.459);
+}
+
+button:active {
+  border: 0.5px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(16, 110, 154, 0.459);
 }
 
 .weatherBox {
-  background-color: lightskyblue;
+  background-color: rgba(21, 176, 248, 0.459);
   border-radius: 5px;
 }
 
 .weather {
   display: grid;
-  background-color: lightskyblue;
+  background-color: rgba(21, 176, 248, 0.459);
   border-radius: 10px;
   padding-left: 3rem;
   padding-right: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 
 .weatherInfo {

@@ -1,15 +1,10 @@
 import React from 'react';
 
-const AssignChore = ({
-  selectedChoreId,
-  selectedUserId,
-  setUsers,
-  setChores,
-  setChoreShown,
-}) => {
+const AssignChore = ({ selectedChoreId, selectedUserId }) => {
   const assignChore = (e) => {
     e.preventDefault();
-    // console.log('ASSIGN CHORE ID:', selectedChoreId);
+    // console.log(selectedChoreId, selectedUserId);
+    console.log('ASSIGN CHORE ID:', selectedChoreId);
     console.log('ASSIGN USER ID:', selectedUserId);
     fetch('http://localhost:3000/chore', {
       method: 'PATCH',
@@ -26,18 +21,7 @@ const AssignChore = ({
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // window.location.pathname = '/';
-        fetch('/choresAndUsers')
-          .then((response) => response.json())
-          .then((data) => {
-            // console.log('data', data);
-            setUsers(data.users);
-            setChores(data.chores);
-            // setChoreShown((choreShown) => !choreShown);
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
+        window.location.pathname = '/';
         // window.location.href = 'http://localhost:8080';
         // let navigate = useNavigate();
         // navigate('/chore');

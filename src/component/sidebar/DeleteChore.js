@@ -4,16 +4,16 @@ import { useState } from 'react';
 const DeleteChore = ({ selectedChoreID, setUsers, setChores }) => {
   const deleteChore = (e) => {
     e.preventDefault();
-    fetch('http://localhost:3000/chore', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        choreID: selectedChoreID,
-      }),
-    })
+    fetch(
+      `http://localhost:3000/chore/${e.target.parentNode.previousSibling.previousSibling.value}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -36,7 +36,7 @@ const DeleteChore = ({ selectedChoreID, setUsers, setChores }) => {
 
   return (
     <div className="deleteChore">
-      <button className="btn btn-sm glass" onClick={deleteChore}>
+      <button className="btn btn-sm glass" onClick={(e) => deleteChore(e)}>
         Delete current chore
       </button>
     </div>
