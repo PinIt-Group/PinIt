@@ -7,13 +7,14 @@ const ListChore = ({
   selectedRoom,
 }) => {
   const choresArr = [];
+  let selected;
 
   chores.map((value) => {
     if (value.room === selectedRoom) {
       choresArr.push(
         <option
           value={selected} //value.id
-          id={selected}
+          id={value.id}
           key={value.chore}
           name={selected}
         >
@@ -22,14 +23,14 @@ const ListChore = ({
       );
     }
   });
-  let selected;
+
   return (
     <select
       className="select"
       value={selectedChoreId}
       onChange={(e) => {
-        selected = e.target.value;
-        setSelectedChoreId(e.target.value);
+        selected = e.currentTarget.value;
+        setSelectedChoreId(e.currentTarget.value); //SOMETHING IS WRONG HERE!
       }}
       selected
     >

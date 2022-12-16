@@ -23,7 +23,6 @@ const choreController = {
   addChore: (req, res, next) => {
     const { chore, room } = req.body;
     const values = [chore, room];
-
     const text = `INSERT INTO chores
     (chore, room)
     VALUES ($1, $2);`;
@@ -55,7 +54,37 @@ const choreController = {
 
     const text = `UPDATE chores
     SET assigned_user_id=$1
-    WHERE chore=$2;`; //ID
+    WHERE id=$2;`; //ID
+    const values = [userIDOption, choreID];
+
+    // query the chore db and update the assigned user id
+    db.query(text, values)
+      .then(() => {
+        console.log('successfully assigned chore');
+        return next();
+      })
+      .catch((error) => {
+        return next({
+          log: 'error when updating chore in updateChore in choreController',
+          message: `error: ${error}`,
+        });
+      });
+  },
+  // assign or unassign a chore to a user
+  reassignChore: (req, res, next) => {
+    const { choreID, userID, assign } = req.body;
+    // console.log('UPDATE CHORE', choreID, userID, assign);
+    // declare a null option ID for if we are unassigning and need to change the assigned value to null
+    let userIDOption = null;
+    res.locals.response = `unassigned chore ${choreID}`;
+    if (assign) {
+      userIDOption = userID;
+      res.locals.response = `assigned chore ${choreID} to user# ${userID}`;
+    }
+
+    const text = `UPDATE chores
+      SET assigned_user_id=$1
+      WHERE chore=$2;`; //ID
     const values = [userIDOption, choreID];
 
     // query the chore db and update the assigned user id

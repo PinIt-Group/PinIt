@@ -4,6 +4,7 @@ export default function CardRoom({ chores, setUsers, setChores }) {
   const handleClick = async (e) => {
     //fetch request to update chore
     e.preventDefault();
+    console.log('THIS IS THE EVENT HANDLER CHORES ID: ', chores.id);
     const response = await fetch('/chore', {
       method: 'PATCH',
       headers: {
@@ -11,7 +12,7 @@ export default function CardRoom({ chores, setUsers, setChores }) {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        choreID: e.target.value,
+        choreID: chores.id,
         assign: false,
       }),
     });
@@ -33,7 +34,11 @@ export default function CardRoom({ chores, setUsers, setChores }) {
   return (
     <div className="card-room">
       <div className="checkbox">
-        <input type="checkbox" onClick={handleClick} value={chores.id}></input>
+        <input
+          type="checkbox"
+          onClick={(e) => handleClick(e)}
+          value={chores.id}
+        ></input>
       </div>
       <span>{chores.chore}</span>
     </div>

@@ -8,10 +8,11 @@
   height: 500px;
   margin: 10px;
   border-radius: 12px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background-image: url('https://media.istockphoto.com/id/1072295604/photo/colored-pencil-background.jpg?s=612x612&w=0&k=20&c=sbOTVziY7IeEfsGLtbZCYMMwbBAohhfhon4uMpfS1yk=');
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
     rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  position: relative;
 }
 
 .card-component {
@@ -19,6 +20,7 @@
   padding: 10px;
   border-radius: 25px;
   min-width: 250px;
+  margin-bottom: 10px;
 }
 
 .card-name {
@@ -53,6 +55,8 @@
 .footer {
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 0;
 }
 .actionsContainer {
   display: flex;

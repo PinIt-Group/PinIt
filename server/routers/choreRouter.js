@@ -13,6 +13,10 @@ router.post('/', choreController.addChore, (req, res) => {
   return res.status(200).json(res.locals.newChore);
 });
 
+router.patch('/reassign', choreController.reassignChore, (req, res) => {
+  return res.status(200).json(res.locals.response);
+});
+
 // patch requests to chore would be for assigning new chores to a user
 router.patch('/', choreController.updateChore, (req, res) => {
   return res.status(200).json(res.locals.response);
